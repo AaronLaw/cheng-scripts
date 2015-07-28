@@ -1,0 +1,1 @@
+robocopy "\\CC-PRINTSERVER\CSAbackup$" "D:\CSA Backup" *.* /COPY:DATSOU /MIR
