@@ -13,4 +13,5 @@
 # /create - copy data in 0-byte manner
 # /XF - exclude files in pattern manner
 
-robocopy "D:\PUBLIC\FILES\2_AUDIT DEPT\Yr 2015\Listed" "D:\PUBLIC\Listed-beyond-lock" /copyall /e /lev:2 /create
+#robocopy "D:\PUBLIC\FILES\2_AUDIT DEPT\Yr 2015\Listed" "D:\PUBLIC\Listed-beyond-lock" /copyall /e /lev:2 /create
+robocopy "D:\PUBLIC\FILES\2_AUDIT DEPT\Yr 2015\Listed" "D:\PUBLIC\LISTED-beyond-lock" /mir /copyall /e /lev:3 /XF *.*
