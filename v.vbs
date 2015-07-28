@@ -9,6 +9,3 @@ oShell.NameSpace("O:\").Self.Name = "Past Data"
 
 Set oShell = CreateObject("Shell.Application")
 oShell.NameSpace("X:\").Self.Name = "My Network Storage"
-
-Set oShell = CreateObject("Shell.Application")
-oShell.NameSpace("Z:\").Self.Name = "Share"
