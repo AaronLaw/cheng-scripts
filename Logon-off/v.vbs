@@ -7,8 +7,8 @@ oShell.NameSpace("I:\").Self.Name = "Home"
 Set oShell = CreateObject("Shell.Application")
 oShell.NameSpace("O:\").Self.Name = "Past Data"
 
-Set oShell = CreateObject("Shell.Application")
-oShell.NameSpace("M:\").Self.Name = "Past Data 2"
+rem Set oShell = CreateObject("Shell.Application")
+rem oShell.NameSpace("M:\").Self.Name = "Past Data 2"
 
 
 rem 2015-07-31:
