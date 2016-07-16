@@ -18,8 +18,8 @@ filetype = ("txt", "ps1")
 
 # Reference:
 # Stackoverflow.com: python move file ->  http://stackoverflow.com/questions/38061344/python-how-to-recursively-move-files-that-are-inside-folders
-folder = os.scandir(source) # return a list of DirEntry object
+folder = os.scandir(source)
 for files in folder:
     if files.name.endswith((filetype)):
-        print("Moving " + files.name)
+        print("Moving {0}".format(files.name))
         shutil.move(os.path.join(source, files.name), os.path.join(dist, files.name))
