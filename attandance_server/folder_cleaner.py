@@ -17,7 +17,7 @@ import os, shutil, glob, datetime
 source = "C:/Users/aaron.law/Sites/cheng-scripts/attandance_server"
 dist = "C:/Users/aaron.law/Sites/cheng-scripts/attandance_server/result"
 filetype = ("txt", "ps1")
-day_keep = datetime.timedelta(days=7) # days of files that should be kept (not to be moved)
+day_keep = datetime.timedelta(days=2) # days of files that should be kept (not to be moved)
 # ref: Stackoverflow.com: python datetime -> http://stackoverflow.com/questions/5476065/truncate-python-datetime -> https://docs.python.org/3/library/datetime.html#module-datetime
 # ref: Stackoverflow.com: python datetime timedelta -> http://stackoverflow.com/questions/20631855/get-the-difference-between-two-datetime-objects-in-minutes-in-python
 
@@ -32,4 +32,7 @@ for files in folder:
  
     if files.name.endswith(filetype) and (m_date < (curr_date - day_keep)):
         print("Moving {0}, with modified date {1}".format(files.name, m_date))
-        shutil.move(os.path.join(source, files.name), os.path.join(dist, files.name))
+        try:
+            shutil.move(os.path.join(source, files.name), os.path.join(dist, files.name))
+        except Exception as why:
+            print(why)
