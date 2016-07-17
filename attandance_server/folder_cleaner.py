@@ -36,3 +36,4 @@ for files in folder:
             shutil.move(os.path.join(source, files.name), os.path.join(dist, files.name))
         except Exception as why:
             print(why)
+            os.makedirs(dist) # create a leaf directory and all intermediate one (recursive) if the dist does not exist
