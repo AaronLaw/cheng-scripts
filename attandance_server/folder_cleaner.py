@@ -26,6 +26,7 @@ curr_date = datetime.date.today() # ref: Stackoverflow.com: python datetime -> h
 # MOVE files if match file extension AND m_date < a certain date
 # ref: Stackoverflow.com: python move file ->  http://stackoverflow.com/questions/38061344/python-how-to-recursively-move-files-that-are-inside-folders
 folder = os.scandir(source) # return a list of DirEntry object
+errors = []
 for files in folder:
     m_time = os.stat(files.name).st_mtime # return a timestamp in float
     m_date = datetime.date.fromtimestamp(m_time) # making a date object from float
@@ -34,6 +35,9 @@ for files in folder:
         print("Moving {0}, with modified date {1}".format(files.name, m_date))
         try:
             shutil.move(os.path.join(source, files.name), os.path.join(dist, files.name))
-        except Exception as why:
-            print(why)
-            os.makedirs(dist) # create a leaf directory and all intermediate one (recursive) if the dist does not exist
+        except Exception as why: # mostly shutil.move() throw an exception when the folder of dist does not exist
+            errors.append(str(why))
+            os.makedirs(dist) # create a leaf directory and all intermediate one (recursive) if the dist does not exist. ref: https://docs.python.org/3/library/shutil.html#shutil.copy2 -> 11.10.1.1. copytree example
+
+if errors:
+    print(errors)
