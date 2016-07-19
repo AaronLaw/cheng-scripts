@@ -14,8 +14,8 @@
 # Last Update: 2017-07-17
 import os, shutil, glob, datetime
 
-source = "C:/Users/aaron.law/Sites/cheng-scripts/attandance_server"
-dist = "C:/Users/aaron.law/Sites/cheng-scripts/attandance_server/result"
+source = "C:/Users/aaron.law/Sites/test_data"
+dist = "C:/Users/aaron.law/Sites/test_data/result"
 filetype = ("txt", "ps1")
 day_keep = datetime.timedelta(days=2) # days of files that should be kept (not to be moved)
 # ref: Stackoverflow.com: python datetime -> http://stackoverflow.com/questions/5476065/truncate-python-datetime -> https://docs.python.org/3/library/datetime.html#module-datetime
@@ -25,16 +25,18 @@ curr_date = datetime.date.today() # ref: Stackoverflow.com: python datetime -> h
 
 # MOVE files if match file extension AND m_date < a certain date
 # ref: Stackoverflow.com: python move file ->  http://stackoverflow.com/questions/38061344/python-how-to-recursively-move-files-that-are-inside-folders
-folder = os.scandir(source) # return a list of DirEntry object
+files = os.scandir(source) # return a list of DirEntry object
 errors = []
-for files in folder:
-    m_time = os.stat(files.name).st_mtime # return a timestamp in float
+for file in files:
+    m_time = os.stat(file.name).st_mtime # return a timestamp in float
     m_date = datetime.date.fromtimestamp(m_time) # making a date object from float
  
-    if files.name.endswith(filetype) and (m_date < (curr_date - day_keep)):
-        print("Moving {0}, with modified date {1}".format(files.name, m_date))
+    if file.name.endswith(filetype) and (m_date < (curr_date - day_keep)):
+        print("Moving {0}, with modified date {1}".format(file.name, m_date))
         try:
-            shutil.move(os.path.join(source, files.name), os.path.join(dist, files.name))
+            print("Jointed source: " + os.path.join(source, file.name))
+            print("Jointed dist  : " + os.path.join(dist, file.name))
+            shutil.move(os.path.join(source, file.name), os.path.join(dist, file.name))
         except Exception as why: # mostly shutil.move() throw an exception when the folder of dist does not exist
             errors.append(str(why))
             os.makedirs(dist) # create a leaf directory and all intermediate one (recursive) if the dist does not exist. ref: https://docs.python.org/3/library/shutil.html#shutil.copy2 -> 11.10.1.1. copytree example
