@@ -26,6 +26,7 @@ curr_date = datetime.date.today() # ref: Stackoverflow.com: python datetime -> h
 # MOVE files if match file extension AND m_date < a certain date
 # ref: Stackoverflow.com: python move file ->  http://stackoverflow.com/questions/38061344/python-how-to-recursively-move-files-that-are-inside-folders
 files = os.scandir(source) # return a list of DirEntry object
+os.chdir(source) # FIX: the files cannot be moved if they are not in the same directory with this script
 errors = []
 for file in files:
     m_time = os.stat(file.name).st_mtime # return a timestamp in float
