@@ -1,3 +1,3 @@
-net use r: \\PC-CS007\cdrom
+rem net use r: \\PC-CS007\cdrom
 
-rom.vbs
+rem rom.vbs
