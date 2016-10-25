@@ -6,3 +6,7 @@ net use o: \\cc-server01\past_data_2$
 net use /delete z:
 
 v.vbs
+
+
+rem set default printer to Global Printer
+RUNDLL32 PRINTUI.DLL,PrintUIEntry /y /n "\\CCPRINT02\GlobalPrinter"
