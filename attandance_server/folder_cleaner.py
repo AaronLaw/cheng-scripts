@@ -3,15 +3,15 @@
 # The 701 Server program generates 2 new files every day, and so the "701 Server folder" becomes full a year later.
 #
 # Requirement:
-# This script intend to clean up "the 701 server folder" by moving some old data (non-current *.msg & *.dut) to another folder.
+# This script intend to clean up "the 701 server folder" by moving some old data (non-current *.msg & *.dut) to an archive folder.
 #    1. The day/time calculated is not required to be accuracy.
-#    2. The current day's file must not be moved around. 
+#    2. The files of the current day must becomes kept in the  currect dorectory. 
 #
 # Usage:
 # Install Python 3 and put this script into scheduler.
 #
 # Author: AaronLaw
-# Last Update: 2017-07-17
+# Last Update: 2016-12-24
 import os, shutil, glob, datetime
 
 source = "C:/Users/aaron.law/Sites/test_data"
@@ -26,7 +26,7 @@ curr_date = datetime.date.today() # ref: Stackoverflow.com: python datetime -> h
 # MOVE files if match file extension AND m_date < a certain date
 # ref: Stackoverflow.com: python move file ->  http://stackoverflow.com/questions/38061344/python-how-to-recursively-move-files-that-are-inside-folders
 files = os.scandir(source) # return a list of DirEntry object
-os.chdir(source) # FIX: the files cannot be moved if they are not in the same directory with this script
+os.chdir(source) # FIX: the files cannot be moved if they are not in the same directory with this script. Need to change cwd for shutil functions.
 errors = []
 for file in files:
     m_time = os.stat(file.name).st_mtime # return a timestamp in float
