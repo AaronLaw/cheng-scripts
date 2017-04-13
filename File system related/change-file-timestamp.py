@@ -14,11 +14,12 @@ import os, time
 from stat import *
 
 # returns a list of all files on the current directory
-files = os.scandir('.')
 os.chdir('.')
+files = os.scandir('.')
+print(files)
 
 for f in files:
-    print(f)
+    print("Affected with timestamp: {} ".format(f) )
     if f.is_dir():
         st = os.stat(f)
         atime = st[ST_ATIME] #access time
